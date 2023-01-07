@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import { Avatar } from "./components/Avatar";
 
@@ -35,7 +34,7 @@ function App() {
     <div className="App">
       <div className="avatar-list">
         {avatarImages.map((avatar) => (
-          <Avatar imgPath={avatar} />
+          <Avatar imgPath={avatar} key={avatar} />
         ))}
       </div>
     </div>
