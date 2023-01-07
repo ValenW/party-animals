@@ -11,13 +11,17 @@
   display: flex;
   height: 200px;
   align-items: center;
-  margin: 0 200px;
   overflow: hidden;
+  padding: 0 100px;
+}
+
+.avatar-list-wrapper {
+  margin: 0 200px;
   position: relative;
 }
 
-.avatar-list::before,
-.avatar-list::after {
+.avatar-list-wrapper::before,
+.avatar-list-wrapper::after {
   content: "";
   position: absolute;
   top: 0;
@@ -27,11 +31,11 @@
   pointer-events: none;
 }
 
-.avatar-list::before {
+.avatar-list-wrapper::before {
   left: 0;
   background: linear-gradient(0.25turn, #f3b75e, #00000000);
 }
-.avatar-list::after {
+.avatar-list-wrapper::after {
   right: 0;
   background: linear-gradient(0.25turn, #00000000, #f3b75e);
 }

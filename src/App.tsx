@@ -14,6 +14,7 @@ import TiagraAvatar from "./assets/avatars/Tiagra_avatar.png";
 import UnderbiteAvatar from "./assets/avatars/Underbite_avatar.png";
 import ValienteAvatar from "./assets/avatars/Valiente_avatar.png";
 import { useCallback, useEffect, useState } from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 const avatarImages = [
   BaconAvatar,
@@ -34,7 +35,6 @@ function App() {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
   const keyPressHandler = useCallback((e: KeyboardEvent) => {
-    console.log(e.key);
     switch (e.key) {
       case "Left":
       case "ArrowLeft":
@@ -60,17 +60,19 @@ function App() {
 
   return (
     <div className="App">
-      <div className="avatar-list">
-        {avatarImages.map((avatar, index) => (
-          <Avatar
-            key={avatar}
-            imgPath={avatar}
-            active={index === activeIndex}
-            onClick={(avatar) =>
-              setActiveIndex(avatarImages.findIndex((a) => a === avatar))
-            }
-          />
-        ))}
+      <div className="avatar-list-wrapper">
+        <ScrollContainer className="avatar-list" vertical={false}>
+          {avatarImages.map((avatar, index) => (
+            <Avatar
+              key={avatar}
+              imgPath={avatar}
+              active={index === activeIndex}
+              onClick={(avatar) =>
+                setActiveIndex(avatarImages.findIndex((a) => a === avatar))
+              }
+            />
+          ))}
+        </ScrollContainer>
       </div>
     </div>
   );
