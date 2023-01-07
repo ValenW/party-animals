@@ -18,8 +18,20 @@ export const Avatar: FC<Props> = ({ imgPath, active, onClick }) => {
   const [hover, setHover] = useState<boolean>(false);
   const [activeImgScale, setActiveImageScale] = useState<number>(1);
 
-  const [playMouseDown] = useSound(MouseDown);
-  const [playMouseUp] = useSound(MouseUp);
+  const [playMouseDown, { stop: stopPlayMouseDown }] = useSound(MouseDown);
+  const [playMouseUp, { stop: stopPlayMouseUp }] = useSound(MouseUp);
+
+  useEffect(() => {
+    if (hover) {
+      playMouseDown();
+    }
+  }, [hover]);
+  
+  useEffect(() => {
+    if (active) {
+      playMouseDown();
+    }
+  }, [active]);
 
   useEffect(() => {
     if (active) {
