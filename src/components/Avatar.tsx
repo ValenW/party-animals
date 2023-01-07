@@ -1,8 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import AvatarActive from "../assets/avatars/avatar_active.png";
 import classnames from "classnames";
-import { motion, startOptimizedAppearAnimation } from "framer-motion";
+import { motion } from "framer-motion";
+import useSound from "use-sound";
 
+import MouseDown from "../assets/audio/MouseDown.wav";
+import MouseUp from "../assets/audio/MouseUp.wav";
 import "./Avatar.css";
 
 interface Props {
@@ -15,6 +18,9 @@ export const Avatar: FC<Props> = ({ imgPath, active, onClick }) => {
   const [hover, setHover] = useState<boolean>(false);
   const [activeImgScale, setActiveImageScale] = useState<number>(1);
 
+  const [playMouseDown] = useSound(MouseDown);
+  const [playMouseUp] = useSound(MouseUp);
+
   useEffect(() => {
     if (active) {
       setActiveImageScale(1.5);
@@ -25,12 +31,14 @@ export const Avatar: FC<Props> = ({ imgPath, active, onClick }) => {
 
   return (
     <motion.div
+      onMouseUp={() => playMouseUp()}
+      onMouseDown={() => playMouseDown()}
       className={classnames("list-item", { active })}
       onClick={() => onClick?.(imgPath)}
       animate={{
         scale: active ? 1.3 : 1,
-        marginLeft: active ? 12 : 0,
-        marginRight: active ? 12 : 0,
+        marginLeft: active ? 16 : 8,
+        marginRight: active ? 16 : 8,
       }}
       transition={{
         scale: {
@@ -50,16 +58,18 @@ export const Avatar: FC<Props> = ({ imgPath, active, onClick }) => {
           src={AvatarActive}
           className="active-img"
           animate={{ scale: activeImgScale }}
-          variants={{
-            // hover: {
-            //   scale: [activeImgScale, activeImgScale + 0.1],
-            //   transition: {
-            //     repeat: Infinity,
-            //     repeatType: "reverse",
-            //     duration: 1,
-            //   },
-            // },
-          }}
+          variants={
+            {
+              // hover: {
+              //   scale: [activeImgScale, activeImgScale + 0.1],
+              //   transition: {
+              //     repeat: Infinity,
+              //     repeatType: "reverse",
+              //     duration: 1,
+              //   },
+              // },
+            }
+          }
         />
         <img src={imgPath} className="avatar-img" />
       </motion.div>

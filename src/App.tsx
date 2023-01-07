@@ -1,5 +1,7 @@
 import "./App.css";
 import { Avatar } from "./components/Avatar";
+import { useCallback, useEffect, useState } from "react";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 import BaconAvatar from "./assets/avatars/Bacon_avatar.png";
 import BarbieAvatar from "./assets/avatars/Barbie_avatar.png";
@@ -13,8 +15,6 @@ import OttaAvatar from "./assets/avatars/Otta_avatar.png";
 import TiagraAvatar from "./assets/avatars/Tiagra_avatar.png";
 import UnderbiteAvatar from "./assets/avatars/Underbite_avatar.png";
 import ValienteAvatar from "./assets/avatars/Valiente_avatar.png";
-import { useCallback, useEffect, useState } from "react";
-import ScrollContainer from "react-indiana-drag-scroll";
 
 const avatarImages = [
   BaconAvatar,
