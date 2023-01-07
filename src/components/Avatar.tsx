@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import AvatarActive from "../assets/avatars/avatar_active.png";
 import classnames from "classnames";
 import { motion } from "framer-motion";
@@ -23,12 +23,14 @@ export const Avatar: FC<Props> = ({ imgPath, active, onClick }) => {
 
   useEffect(() => {
     if (hover) {
+      stopPlayMouseDown();
       playMouseDown();
     }
   }, [hover]);
-  
+
   useEffect(() => {
     if (active) {
+      stopPlayMouseDown();
       playMouseDown();
     }
   }, [active]);
