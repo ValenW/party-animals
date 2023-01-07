@@ -1,0 +1,36 @@
+.list-item {
+}
+.avatar-wrapper {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.active-img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 0;
+  transform: scale(1.25);
+}
+.avatar-img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 1;
+}
+
+.list-item.active {
+  margin: auto 12px auto;
+  transform: scale(1.2);
+  transition: all 0.5s;
+}
+.list-item.active .active-img {
+  transform: scale(1.45);
+  transition: all 0.5s;
+}

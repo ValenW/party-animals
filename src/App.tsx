@@ -13,6 +13,7 @@ import OttaAvatar from "./assets/avatars/Otta_avatar.png";
 import TiagraAvatar from "./assets/avatars/Tiagra_avatar.png";
 import UnderbiteAvatar from "./assets/avatars/Underbite_avatar.png";
 import ValienteAvatar from "./assets/avatars/Valiente_avatar.png";
+import { useState } from "react";
 
 const avatarImages = [
   BaconAvatar,
@@ -30,11 +31,20 @@ const avatarImages = [
 ];
 
 function App() {
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+
   return (
     <div className="App">
       <div className="avatar-list">
-        {avatarImages.map((avatar) => (
-          <Avatar imgPath={avatar} key={avatar} />
+        {avatarImages.map((avatar, index) => (
+          <Avatar
+            key={avatar}
+            imgPath={avatar}
+            active={index === activeIndex}
+            onClick={(avatar) =>
+              setActiveIndex(avatarImages.findIndex((a) => a === avatar))
+            }
+          />
         ))}
       </div>
     </div>

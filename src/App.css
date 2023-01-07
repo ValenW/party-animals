@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   text-align: center;
   overflow: hidden;
 }
@@ -10,4 +9,6 @@
 
 .avatar-list {
   display: flex;
+  height: 200px;
+  align-items: center;
 }
