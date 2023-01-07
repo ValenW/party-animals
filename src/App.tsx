@@ -13,7 +13,7 @@ import OttaAvatar from "./assets/avatars/Otta_avatar.png";
 import TiagraAvatar from "./assets/avatars/Tiagra_avatar.png";
 import UnderbiteAvatar from "./assets/avatars/Underbite_avatar.png";
 import ValienteAvatar from "./assets/avatars/Valiente_avatar.png";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const avatarImages = [
   BaconAvatar,
@@ -32,6 +32,31 @@ const avatarImages = [
 
 function App() {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
+
+  const keyPressHandler = useCallback((e: KeyboardEvent) => {
+    console.log(e.key);
+    switch (e.key) {
+      case "Left":
+      case "ArrowLeft":
+        setActiveIndex((old) =>
+          old === -1 ? avatarImages.length - 1 : Math.max(0, old - 1)
+        );
+        break;
+      case "Right":
+      case "ArrowRight":
+        setActiveIndex((old) =>
+          old === -1 ? 0 : Math.min(avatarImages.length - 1, old + 1)
+        );
+        break;
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", keyPressHandler);
+    return () => {
+      document.removeEventListener("keydown", keyPressHandler);
+    };
+  }, [keyPressHandler]);
 
   return (
     <div className="App">
